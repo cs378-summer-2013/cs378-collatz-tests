@@ -58,6 +58,45 @@ struct TestCollatz : CppUnit::TestFixture {
         CPPUNIT_ASSERT(j == 1000000);}
 
     // ----
+    // lazy cache lookup
+    // ----
+    
+    void test_lazy_cache_1 () {
+        const int len = collatz_lazy_cache(1);
+        CPPUNIT_ASSERT(len == 1);
+    }
+
+    void test_lazy_cache_2 () {
+        const int len = collatz_lazy_cache(99);
+        CPPUNIT_ASSERT(len == 26);
+    }
+    
+    // ----
+    // compute length of collatz sequence
+    // ----
+
+    void test_compute_collatz_1 () {
+        const int len = collatz_compute(1);
+        CPPUNIT_ASSERT(len == 1);
+    }
+
+    void test_compute_collatz_2 () {
+        const int len = collatz_compute(2);
+        CPPUNIT_ASSERT(len == 2);
+    }
+
+    void test_compute_collatz_3 () {
+        const int len = collatz_compute(99);
+        CPPUNIT_ASSERT(len == 26);
+    }
+
+    void test_compute_collatz_4 () {
+        const int len = collatz_compute(929679);
+        CPPUNIT_ASSERT(len == 171);
+    }
+ 
+
+    // ----
     // eval
     // ----
 
@@ -132,6 +171,12 @@ struct TestCollatz : CppUnit::TestFixture {
     CPPUNIT_TEST_SUITE(TestCollatz);
     CPPUNIT_TEST(test_read_1);
     CPPUNIT_TEST(test_read_2);
+    CPPUNIT_TEST(test_lazy_cache_1);
+    CPPUNIT_TEST(test_lazy_cache_2);
+    CPPUNIT_TEST(test_compute_collatz_1);
+    CPPUNIT_TEST(test_compute_collatz_2);
+    CPPUNIT_TEST(test_compute_collatz_3);
+    CPPUNIT_TEST(test_compute_collatz_4);
     CPPUNIT_TEST(test_eval_1);
     CPPUNIT_TEST(test_eval_2);
     CPPUNIT_TEST(test_eval_3);
