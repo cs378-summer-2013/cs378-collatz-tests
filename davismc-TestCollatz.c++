@@ -116,10 +116,10 @@ struct TestCollatz : CppUnit::TestFixture {
         CPPUNIT_ASSERT(w.str() == "1 10 20\n100 200 125\n201 210 89\n900 1000 174\n");}
 
     void test_solve_2 () {
-        std::istringstream r("27 27\n6 6 9\n");
+        std::istringstream r("27 27\n6 6\n");
         std::ostringstream w;
         collatz_solve(r, w);
-        CPPUNIT_ASSERT(w.str() == "27 27 111\n");}
+        CPPUNIT_ASSERT(w.str() == "27 27 112\n6 6 9\n");}
     
     void test_solve_3 () {
         std::istringstream r("11 11\n");
