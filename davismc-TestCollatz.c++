@@ -126,6 +126,31 @@ struct TestCollatz : CppUnit::TestFixture {
         std::ostringstream w;
         collatz_solve(r, w);
         CPPUNIT_ASSERT(w.str() == "11 11 15\n");}
+    
+
+    // -----
+    // find_collatz
+    // -----
+
+	void test_find_collatz_1 () {
+		int i = 1;
+		int v = find_collatz(i);
+		CPPUNIT_ASSERT(v == 1);}
+
+	void test_find_collatz_2 () {
+		int i = 5;
+		int v = find_collatz(i);
+		CPPUNIT_ASSERT(v == 6);}
+
+	void test_find_collatz_3 () {
+		int i = 10;
+		int v = find_collatz(i);
+		CPPUNIT_ASSERT(v == 7);}
+
+	void test_find_collatz_4 () {
+		int i = 11;
+		int v = find_collatz(i);
+		CPPUNIT_ASSERT(v == 15);}
     // -----
     // suite
     // -----
@@ -144,6 +169,10 @@ struct TestCollatz : CppUnit::TestFixture {
     CPPUNIT_TEST(test_solve);
     CPPUNIT_TEST(test_solve_2);
     CPPUNIT_TEST(test_solve_3);
+    CPPUNIT_TEST(test_find_collatz_1);
+    CPPUNIT_TEST(test_find_collatz_2);
+    CPPUNIT_TEST(test_find_collatz_3);
+    CPPUNIT_TEST(test_find_collatz_4);
     CPPUNIT_TEST_SUITE_END();};
 
 // ----
