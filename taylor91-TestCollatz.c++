@@ -48,23 +48,30 @@ struct TestCollatz : CppUnit::TestFixture {
         CPPUNIT_ASSERT(i ==    1);
         CPPUNIT_ASSERT(j ==   10);}
 
-    void test_read_2 () {
-	std::istringstream r("");
-	int i;
-	int j;
-	const bool b = collatz_read(r, i, j);
-	CPPUNIT_ASSERT(b == false);
-	}
+	void test_read_2() {
+		std::istringstream r("10 1\n");
+		int i;
+		int j;
+		const bool b = collatz_read(r, i, j);
+        CPPUNIT_ASSERT(b == true);
+        CPPUNIT_ASSERT(i ==   10);
+        CPPUNIT_ASSERT(j ==   1);}
 
-    void test_read_3 () {
-	std::istringstream r("10000 10000");
-	int i;
-	int j;
-	const bool b = collatz_read(r, i, j);
-	CPPUNIT_ASSERT(b == true);
-	CPPUNIT_ASSERT(i == 10000);
-	CPPUNIT_ASSERT(j == 10000);
-	}
+	void test_read_3() {
+		std::istringstream r("5 5\n");
+		int i;
+		int j;
+		const bool b = collatz_read(r, i, j);
+        CPPUNIT_ASSERT(b == true);
+        CPPUNIT_ASSERT(i ==   5);
+        CPPUNIT_ASSERT(j ==   5);}
+
+	void test_read_4() {
+		std::istringstream r("");
+		int i;
+		int j;
+		const bool b = collatz_read(r, i, j);
+        CPPUNIT_ASSERT(b == false);}
 
     // ----
     // eval
@@ -85,6 +92,18 @@ struct TestCollatz : CppUnit::TestFixture {
     void test_eval_4 () {
         const int v = collatz_eval(900, 1000);
         CPPUNIT_ASSERT(v == 174);}
+	
+    void test_eval_5 () {
+        const int v = collatz_eval(1, 5);
+        CPPUNIT_ASSERT(v == 8);}
+	
+    void test_eval_6 () {
+        const int v = collatz_eval(1, 1);
+        CPPUNIT_ASSERT(v == 1);}
+	
+    void test_eval_7 () {
+        const int v = collatz_eval(5, 5);
+        CPPUNIT_ASSERT(v == 6);}
 
     // -----
     // print
@@ -97,13 +116,13 @@ struct TestCollatz : CppUnit::TestFixture {
 
     void test_print_2 () {
         std::ostringstream w;
-        collatz_print(w, 200, 300, 1);
-        CPPUNIT_ASSERT(w.str() == "200 300 1\n");}
+        collatz_print(w, 10, 1, 20);
+        CPPUNIT_ASSERT(w.str() == "10 1 20\n");}
 
     void test_print_3 () {
         std::ostringstream w;
-        collatz_print(w, 50, 50, 50);
-        CPPUNIT_ASSERT(w.str() == "50 50 50\n");}
+        collatz_print(w, 5, 5, 6);
+        CPPUNIT_ASSERT(w.str() == "5 5 6\n");}
 
     // -----
     // solve
@@ -116,59 +135,42 @@ struct TestCollatz : CppUnit::TestFixture {
         CPPUNIT_ASSERT(w.str() == "1 10 20\n100 200 125\n201 210 89\n900 1000 174\n");}
 
     void test_solve_2 () {
-        std::istringstream r("27 27\n6 6\n");
+        std::istringstream r("1 1\n");
         std::ostringstream w;
         collatz_solve(r, w);
-        CPPUNIT_ASSERT(w.str() == "27 27 112\n6 6 9\n");}
-    
+        CPPUNIT_ASSERT(w.str() == "1 1 1\n");}
+
     void test_solve_3 () {
-        std::istringstream r("11 11\n");
+        std::istringstream r("2 2\n1 1\n1 3\n");
         std::ostringstream w;
         collatz_solve(r, w);
-        CPPUNIT_ASSERT(w.str() == "11 11 15\n");}
-    
+        CPPUNIT_ASSERT(w.str() == "2 2 2\n1 1 1\n1 3 8\n");}
 
-    // -----
-    // find_collatz
-    // -----
+    void test_solve_4 () {
+        std::istringstream r("1 3\n3 1\n");
+        std::ostringstream w;
+        collatz_solve(r, w);
+        CPPUNIT_ASSERT(w.str() == "1 3 8\n3 1 8\n");}
 
-	void test_find_collatz_1 () {
-		int i = 1;
-		int v = find_collatz(i);
-		CPPUNIT_ASSERT(v == 1);}
+	// ------------	
+	// cycle_length
+	// ------------	
 
-	void test_find_collatz_2 () {
-		int i = 5;
-		int v = find_collatz(i);
-		CPPUNIT_ASSERT(v == 6);}
+	void test_cycle_length() {
+		const int v = cycle_length(1);		
+		CPPUNIT_ASSERT(v == 1);
+	}
 
-	void test_find_collatz_3 () {
-		int i = 10;
-		int v = find_collatz(i);
-		CPPUNIT_ASSERT(v == 7);}
+	void test_cycle_length_2() {
+		const int v = cycle_length(5);		
+		CPPUNIT_ASSERT(v == 6);
+	}
 
-	void test_find_collatz_4 () {
-		int i = 11;
-		int v = find_collatz(i);
-		CPPUNIT_ASSERT(v == 15);}
-
-    // -----
-    // round_to_next
-    // -----
-	void test_round_to_next_1 () {
-		int i = 124;
-		int v = round_to_next(i);
-		CPPUNIT_ASSERT(v == 160);}
-
-	void test_round_to_next_2 () {
-		int i = 24;
-		int v = round_to_next(i);
-		CPPUNIT_ASSERT(v == 40);}
-
-	void test_round_to_next_3 () {
-		int i = 1;
-		int v = round_to_next(i);
-		CPPUNIT_ASSERT(v == 40);}
+	void test_cycle_length_3() {
+		const int v = cycle_length(3);		
+		CPPUNIT_ASSERT(v == 8);
+	}
+	
 
     // -----
     // suite
@@ -178,23 +180,24 @@ struct TestCollatz : CppUnit::TestFixture {
     CPPUNIT_TEST(test_read);
     CPPUNIT_TEST(test_read_2);
     CPPUNIT_TEST(test_read_3);
+    CPPUNIT_TEST(test_read_4);
     CPPUNIT_TEST(test_eval_1);
     CPPUNIT_TEST(test_eval_2);
     CPPUNIT_TEST(test_eval_3);
     CPPUNIT_TEST(test_eval_4);
+    CPPUNIT_TEST(test_eval_5);
+    CPPUNIT_TEST(test_eval_6);
+    CPPUNIT_TEST(test_eval_7);
     CPPUNIT_TEST(test_print);
     CPPUNIT_TEST(test_print_2);
     CPPUNIT_TEST(test_print_3);
     CPPUNIT_TEST(test_solve);
     CPPUNIT_TEST(test_solve_2);
     CPPUNIT_TEST(test_solve_3);
-    CPPUNIT_TEST(test_find_collatz_1);
-    CPPUNIT_TEST(test_find_collatz_2);
-    CPPUNIT_TEST(test_find_collatz_3);
-    CPPUNIT_TEST(test_find_collatz_4);
-    CPPUNIT_TEST(test_round_to_next_1);
-    CPPUNIT_TEST(test_round_to_next_2);
-    CPPUNIT_TEST(test_round_to_next_3);
+    CPPUNIT_TEST(test_solve_4);
+	CPPUNIT_TEST(test_cycle_length);
+	CPPUNIT_TEST(test_cycle_length_2);
+	CPPUNIT_TEST(test_cycle_length_3);
     CPPUNIT_TEST_SUITE_END();};
 
 // ----
