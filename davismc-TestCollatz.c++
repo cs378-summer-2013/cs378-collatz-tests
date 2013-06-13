@@ -151,6 +151,25 @@ struct TestCollatz : CppUnit::TestFixture {
 		int i = 11;
 		int v = find_collatz(i);
 		CPPUNIT_ASSERT(v == 15);}
+
+    // -----
+    // round_to_next
+    // -----
+	void test_round_to_next_1 () {
+		int i = 124;
+		int v = round_to_next(i);
+		CPPUNIT_ASSERT(v == 160);}
+
+	void test_round_to_next_2 () {
+		int i = 24;
+		int v = round_to_next(i);
+		CPPUNIT_ASSERT(v == 40);}
+
+	void test_round_to_next_3 () {
+		int i = 1;
+		int v = round_to_next(i);
+		CPPUNIT_ASSERT(v == 40);}
+
     // -----
     // suite
     // -----
@@ -173,6 +192,9 @@ struct TestCollatz : CppUnit::TestFixture {
     CPPUNIT_TEST(test_find_collatz_2);
     CPPUNIT_TEST(test_find_collatz_3);
     CPPUNIT_TEST(test_find_collatz_4);
+    CPPUNIT_TEST(test_round_to_next_1);
+    CPPUNIT_TEST(test_round_to_next_2);
+    CPPUNIT_TEST(test_round_to_next_3);
     CPPUNIT_TEST_SUITE_END();};
 
 // ----
