@@ -1,0 +1,87 @@
+valgrind TestCollatz
+==27580== Memcheck, a memory error detector
+==27580== Copyright (C) 2002-2011, and GNU GPL'd, by Julian Seward et al.
+==27580== Using Valgrind-3.7.0 and LibVEX; rerun with -h for copyright info
+==27580== Command: TestCollatz
+==27580== 
+TestCollatz.c++
+.....F.F.F.F.F.F.F.....F.F.F.F
+
+
+!!!FAILURES!!!
+Test Results:
+Run:  19   Failures: 11   Errors: 0
+
+
+1) test: TestCollatz::test_eval_1 (F) line: 85 TestCollatz.c++
+assertion failed
+- Expression: v == 20
+
+
+2) test: TestCollatz::test_eval_2 (F) line: 89 TestCollatz.c++
+assertion failed
+- Expression: v == 125
+
+
+3) test: TestCollatz::test_eval_3 (F) line: 93 TestCollatz.c++
+assertion failed
+- Expression: v == 89
+
+
+4) test: TestCollatz::test_eval_4 (F) line: 97 TestCollatz.c++
+assertion failed
+- Expression: v == 174
+
+
+5) test: TestCollatz::test_eval_5 (F) line: 102 TestCollatz.c++
+assertion failed
+- Expression: v == 217
+
+
+6) test: TestCollatz::test_eval_6 (F) line: 106 TestCollatz.c++
+assertion failed
+- Expression: v == 262
+
+
+7) test: TestCollatz::test_eval_7 (F) line: 110 TestCollatz.c++
+assertion failed
+- Expression: v == 324
+
+
+8) test: TestCollatz::test_solve (F) line: 146 TestCollatz.c++
+assertion failed
+- Expression: w.str() == "1 10 20\n100 200 125\n201 210 89\n900 1000 174\n"
+
+
+9) test: TestCollatz::test_solve1 (F) line: 153 TestCollatz.c++
+assertion failed
+- Expression: w.str() == "3830 40652 324\n6519 2895 262\n2429 3496 217\n1185 38112 324\n"
+
+
+10) test: TestCollatz::test_solve2 (F) line: 159 TestCollatz.c++
+assertion failed
+- Expression: w.str() == "400 23244 279\n8224 14575 276\n7395 47307 324\n9926 4367 262\n"
+
+
+11) test: TestCollatz::test_solve3 (F) line: 165 TestCollatz.c++
+assertion failed
+- Expression: w.str() == "8002 29 262\n7860 46420 324\n6009 91 238\n6691 22030 279\n"
+
+
+Done.
+==27580== 
+==27580== HEAP SUMMARY:
+==27580==     in use at exit: 122,880 bytes in 6 blocks
+==27580==   total heap usage: 975 allocs, 969 frees, 257,119 bytes allocated
+==27580== 
+==27580== LEAK SUMMARY:
+==27580==    definitely lost: 0 bytes in 0 blocks
+==27580==    indirectly lost: 0 bytes in 0 blocks
+==27580==      possibly lost: 0 bytes in 0 blocks
+==27580==    still reachable: 122,880 bytes in 6 blocks
+==27580==         suppressed: 0 bytes in 0 blocks
+==27580== Rerun with --leak-check=full to see details of leaked memory
+==27580== 
+==27580== For counts of detected and suppressed errors, rerun with: -v
+==27580== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 2 from 2)
+

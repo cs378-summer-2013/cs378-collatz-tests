@@ -1,0 +1,35 @@
+TestCollatz.c++
+..F.F.F.F..F
+
+
+!!!FAILURES!!!
+Test Results:
+Run:  7   Failures: 5   Errors: 0
+
+
+1) test: TestCollatz::test_eval_1 (F) line: 57 TestCollatz.c++
+assertion failed
+- Expression: v == 20
+
+
+2) test: TestCollatz::test_eval_2 (F) line: 61 TestCollatz.c++
+assertion failed
+- Expression: v == 125
+
+
+3) test: TestCollatz::test_eval_3 (F) line: 65 TestCollatz.c++
+assertion failed
+- Expression: v == 89
+
+
+4) test: TestCollatz::test_eval_4 (F) line: 69 TestCollatz.c++
+assertion failed
+- Expression: v == 174
+
+
+5) test: TestCollatz::test_solve (F) line: 88 TestCollatz.c++
+assertion failed
+- Expression: w.str() == "1 10 20\n100 200 125\n201 210 89\n900 1000 174\n"
+
+
+Done.
