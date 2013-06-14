@@ -84,17 +84,17 @@ struct TestCollatz : CppUnit::TestFixture {
 
     void test_print_3 () {
         std::ostringstream w;
-	std::ostringstream x;
+		std::ostringstream x;
         collatz_print(w, 1, 10, 20);
-	collatz_print(x, 212, 1, 43);
+		collatz_print(x, 212, 1, 43);
         CPPUNIT_ASSERT(w.str() == "1 10 20\n");
-	CPPUNIT_ASSERT(x.str() == "212 1 43\n");}
+		CPPUNIT_ASSERT(x.str() == "212 1 43\n");}
 
     void test_print_4 () {
         std::ostringstream w;
         collatz_print(w, 1, 10, 20);
-	collatz_print(w, 212, 1, 43);
-	CPPUNIT_ASSERT(w.str() == "1 10 20\n212 1 43\n");}
+		collatz_print(w, 212, 1, 43);
+		CPPUNIT_ASSERT(w.str() == "1 10 20\n212 1 43\n");}
 
 
     // -----
