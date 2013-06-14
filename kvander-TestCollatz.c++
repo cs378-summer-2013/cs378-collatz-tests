@@ -93,7 +93,17 @@ struct TestCollatz : CppUnit::TestFixture {
         const int v = collatz_eval(2000, 3500);
         CPPUNIT_ASSERT(v != 174);}
 
+    // -----
+    // cache_generator
+    // -----
 
+    void test_generator_1 () {
+        const int n = collatz_cache_generator(true);
+        CPPUNIT_ASSERT(n != 0);}
+
+    void test_generator_2 () {
+        const int n = collatz_cache_generator(true);
+        CPPUNIT_ASSERT(n == 182);}
 
     // -----
     // print
@@ -151,6 +161,8 @@ struct TestCollatz : CppUnit::TestFixture {
     CPPUNIT_TEST(test_eval_3);
     CPPUNIT_TEST(test_eval_4);
     CPPUNIT_TEST(test_eval_5);
+    CPPUNIT_TEST(test_generator_1);
+    CPPUNIT_TEST(test_generator_2);
     CPPUNIT_TEST(test_print_1);
     CPPUNIT_TEST(test_print_2);
     CPPUNIT_TEST(test_print_base);
