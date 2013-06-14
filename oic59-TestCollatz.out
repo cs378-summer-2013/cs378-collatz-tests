@@ -1,0 +1,9 @@
+$ make test
+./TestCollatz
+TestCollatz.c++
+..................
+
+
+OK (18 tests)
+
+
