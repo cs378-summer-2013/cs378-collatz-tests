@@ -1,0 +1,37 @@
+==23099== Memcheck, a memory error detector
+==23099== Copyright (C) 2002-2011, and GNU GPL'd, by Julian Seward et al.
+==23099== Using Valgrind-3.7.0 and LibVEX; rerun with -h for copyright info
+==23099== Command: ./TestCollatz
+==23099== 
+TestCollatz.c++
+...==23099== Conditional jump or move depends on uninitialised value(s)
+==23099==    at 0x40267E: collatz_read(std::istream&, int&, int&) (in /home/michael/Files/CS378/Project1/TestCollatz)
+==23099==    by 0x40381F: TestCollatz::test_read_3() (in /home/michael/Files/CS378/Project1/TestCollatz)
+==23099==    by 0x4093BA: CppUnit::TestCaller<TestCollatz>::runTest() (in /home/michael/Files/CS378/Project1/TestCollatz)
+==23099==    by 0x4E53EE0: CppUnit::TestCaseMethodFunctor::operator()() const (in /usr/lib/libcppunit-1.12.so.1.0.0)
+==23099==    by 0x4E49F64: CppUnit::DefaultProtector::protect(CppUnit::Functor const&, CppUnit::ProtectorContext const&) (in /usr/lib/libcppunit-1.12.so.1.0.0)
+==23099==    by 0x4E50F21: CppUnit::ProtectorChain::protect(CppUnit::Functor const&, CppUnit::ProtectorContext const&) (in /usr/lib/libcppunit-1.12.so.1.0.0)
+==23099==    by 0x4E59A84: CppUnit::TestResult::protect(CppUnit::Functor const&, CppUnit::Test*, std::string const&) (in /usr/lib/libcppunit-1.12.so.1.0.0)
+==23099==    by 0x4E53BEE: CppUnit::TestCase::run(CppUnit::TestResult*) (in /usr/lib/libcppunit-1.12.so.1.0.0)
+==23099==    by 0x4E54222: CppUnit::TestComposite::doRunChildTests(CppUnit::TestResult*) (in /usr/lib/libcppunit-1.12.so.1.0.0)
+==23099==    by 0x4E54145: CppUnit::TestComposite::run(CppUnit::TestResult*) (in /usr/lib/libcppunit-1.12.so.1.0.0)
+==23099==    by 0x4E59A09: CppUnit::TestResult::runTest(CppUnit::Test*) (in /usr/lib/libcppunit-1.12.so.1.0.0)
+==23099==    by 0x4E5BEC8: CppUnit::TestRunner::run(CppUnit::TestResult&, std::string const&) (in /usr/lib/libcppunit-1.12.so.1.0.0)
+==23099== 
+TestCollatz: Collatz.cpp:26: bool collatz_read(std::istream&, int&, int&): Assertion `j > 0' failed.
+==23099== 
+==23099== HEAP SUMMARY:
+==23099==     in use at exit: 130,009 bytes in 96 blocks
+==23099==   total heap usage: 216 allocs, 120 frees, 142,146 bytes allocated
+==23099== 
+==23099== LEAK SUMMARY:
+==23099==    definitely lost: 0 bytes in 0 blocks
+==23099==    indirectly lost: 0 bytes in 0 blocks
+==23099==      possibly lost: 1,505 bytes in 24 blocks
+==23099==    still reachable: 128,504 bytes in 72 blocks
+==23099==         suppressed: 0 bytes in 0 blocks
+==23099== Rerun with --leak-check=full to see details of leaked memory
+==23099== 
+==23099== For counts of detected and suppressed errors, rerun with: -v
+==23099== Use --track-origins=yes to see where uninitialised values come from
+==23099== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 2 from 2)
